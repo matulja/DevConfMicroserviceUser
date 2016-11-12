@@ -8,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-
 public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 
 	@Autowired
@@ -25,11 +24,14 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 	public void run(String... strings) throws Exception {
 
 		userRepository.deleteAll();
-		userRepository.save(new User( "Berlina", "Password", "333"));
+		userRepository.save(new User("Maryna", "password"));
+		userRepository.save(new User("Saba", "passwort"));
+		userRepository.save(new User("Katharina", "passwort"));
 
 		for (User user : userRepository.findAll()) {
-			System.out.println(user.getId());
+			System.out.println(user.getUserId());
 			System.out.println(user.getLoginName());
+			System.out.println(user.getPassword());
 		}
 
 	}

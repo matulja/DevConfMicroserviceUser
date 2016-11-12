@@ -1,4 +1,5 @@
 package com.senacor.model;
+
 import org.springframework.data.annotation.Id;
 
 /**
@@ -6,21 +7,25 @@ import org.springframework.data.annotation.Id;
  */
 public class User {
 
-    private String id;
+    @Id
+    private String userId;
     private String loginName;
     private String password;
-    private String vorname;
-    private String nachname;
+    private String firstname;
+    private String lastname;
     private String email;
     private String titel;
     private String position;
     private String clientServiceTeam;
     private String roleId;
 
+    public User() {
 
-    public User(String loginName, String password, String id) {
-        this.id = id;
+    }
+    public User(String loginName, String password) {
         this.loginName = loginName;
+
+
         this.password = password;
     }
 
@@ -48,20 +53,20 @@ public class User {
         this.loginName = loginName;
     }
 
-    public String getVorname() {
-        return vorname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getNachname() {
-        return nachname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -104,9 +109,8 @@ public class User {
         this.roleId = roleId;
     }
 
-    @Id
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
     public String getPassword() {
@@ -117,8 +121,5 @@ public class User {
         this.password = password;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 }
 
