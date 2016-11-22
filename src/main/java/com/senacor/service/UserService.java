@@ -17,22 +17,22 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public boolean authenticateUser(User user) {
-
-        boolean isAuthenticated = false;
-        if (user != null) {
-            if (!StringUtils.isEmpty(user.getLoginName())
-                    && !StringUtils.isEmpty(user.getPassword())) {
-                String loginName = user.getLoginName();
-                String password = user.getPassword();
-                User savedUser = userRepository.findByLoginName(user.getLoginName());
-                if (savedUser != null && savedUser.getPassword().equals(user.getPassword())) {
-                    isAuthenticated = true;
-                }
+    public User authenticateUser(User user) {
+        System.out.println("**In authenticate service class!");
+        System.out.println(user.getPassword());
+        System.out.println(user.getUsername());
+        System.out.println("user is not null");
+        User savedUser = userRepository.findByUsername(user.getUsername());
+        System.out.println(savedUser.getPassword());
+        System.out.println(savedUser.getUsername());
+        if (savedUser != null && savedUser.getPassword().equals(user.getPassword())) {
+            user = savedUser;
             }
+        else{
+            user = null;
         }
 
-        return isAuthenticated;
+        return user;
 
     }
 }

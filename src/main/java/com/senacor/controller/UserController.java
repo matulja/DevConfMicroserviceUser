@@ -21,12 +21,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public ResponseEntity<HttpStatus> authenticateUser(@RequestBody User user) {
-        if(userService.authenticateUser(user)) {
-            return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+    @RequestMapping(value = "/auth", method = RequestMethod.POST,  produces = "application/json", consumes = "application/json")
+    public ResponseEntity<User> authenticateUser(@RequestBody User user) {
+        user = userService.authenticateUser(user);
+        if(user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
-            return new ResponseEntity<HttpStatus>(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(user, HttpStatus.UNAUTHORIZED);
         }
 
     }

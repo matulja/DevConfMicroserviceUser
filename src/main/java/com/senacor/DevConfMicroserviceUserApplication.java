@@ -30,7 +30,7 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 
 		for (User user : userRepository.findAll()) {
 			System.out.println(user.getUserId());
-			System.out.println(user.getLoginName());
+			System.out.println(user.getUsername());
 			System.out.println(user.getPassword());
 		}
 

@@ -16,5 +16,5 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "user", path = "user")
 public interface UserRepository extends MongoRepository<User, String> {
 
-    User findByLoginName(@Param("loginName") String loginName);
+    User findByUsername(@Param("username") String username);
 }
