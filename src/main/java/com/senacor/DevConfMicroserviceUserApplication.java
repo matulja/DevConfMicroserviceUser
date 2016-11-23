@@ -24,9 +24,9 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 	public void run(String... strings) throws Exception {
 
 		userRepository.deleteAll();
-		userRepository.save(new User("Maryna", "password"));
-		userRepository.save(new User("Saba", "passwort"));
-		userRepository.save(new User("Katharina", "passwort"));
+		userRepository.save(new User("Maryna", "123"));
+		userRepository.save(new User("Saba", "123"));
+		userRepository.save(new User("Katharina", "123"));
 
 		for (User user : userRepository.findAll()) {
 			System.out.println(user.getUserId());
