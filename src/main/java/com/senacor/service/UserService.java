@@ -19,11 +19,8 @@ public class UserService {
 
     public User authenticateUser(User user) {
         System.out.println("**In authenticate service class!");
-        System.out.println(user.getPassword());
         System.out.println(user.getUsername());
-        System.out.println("user is not null");
         User savedUser = userRepository.findByUsername(user.getUsername());
-        System.out.println(savedUser.getPassword());
         System.out.println(savedUser.getUsername());
         if (savedUser != null && savedUser.getPassword().equals(user.getPassword())) {
             user = savedUser;

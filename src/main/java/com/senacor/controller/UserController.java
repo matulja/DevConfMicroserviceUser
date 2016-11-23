@@ -22,13 +22,13 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST,  produces = "application/json", consumes = "application/json")
-    public ResponseEntity<User> authenticateUser(@RequestBody User user) {
-        user = userService.authenticateUser(user);
-        if(user != null) {
+    public User authenticateUser(@RequestBody User user) {
+       return user = userService.authenticateUser(user);
+       /* if(user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(user, HttpStatus.UNAUTHORIZED);
-        }
-
+        }*/
+      //  return new ResponseEntity<User>(userService.authenticateUser(user), HttpStatus.OK);
     }
 }
