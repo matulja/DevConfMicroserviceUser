@@ -27,6 +27,10 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 		userRepository.save(new User("Maryna", "123"));
 		userRepository.save(new User("Saba", "123"));
 		userRepository.save(new User("Katharina", "123"));
+		userRepository.save(new User("Nadia", "123"));
+		userRepository.save(new User("Vero", "123"));
+		userRepository.save(new User("Hannes", "123"));
+		userRepository.save(new User("Richard", "123"));
 
 		for (User user : userRepository.findAll()) {
 			System.out.println(user.getUserId());
