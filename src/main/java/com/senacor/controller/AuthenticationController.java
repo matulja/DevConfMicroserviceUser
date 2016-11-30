@@ -37,8 +37,9 @@ public class AuthenticationController {
         user.setPassword(password);
 
         User savedUser = userService.authenticateUser(user);
-
         Token token = tokenService.createToken(savedUser);
+
+        System.out.println("" + token);
 
         if(token!= null){
             return new ResponseEntity<>(token, HttpStatus.OK);
