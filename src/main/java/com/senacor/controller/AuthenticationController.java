@@ -37,14 +37,16 @@ public class AuthenticationController {
         user.setPassword(password);
 
         User savedUser = userService.authenticateUser(user);
-        Token token = tokenService.createToken(savedUser);
 
-        System.out.println("" + token);
 
-        if(token!= null){
+        if(savedUser != null){
+            Token token = tokenService.createToken(savedUser);
+            System.out.println(token.getTokenId());
+            System.out.println(token.getUserId());
+            System.out.println(token.getRoles());
             return new ResponseEntity<>(token, HttpStatus.OK);
         } else{
-            return new ResponseEntity<>(token, HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
     }

@@ -10,9 +10,10 @@ import java.security.SecureRandom;
 public class Token {
 
     // TODO UUID
-    @Id
-    private String tokenId;
 
+
+
+    private String tokenId;
     private String userId;
     private String [] roles;
 
@@ -26,6 +27,29 @@ public class Token {
         tokenId= generateTokenId();
 
 
+    }
+    public String getTokenId() {
+        return tokenId;
+    }
+
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String[] getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String[] roles) {
+        this.roles = roles;
     }
 
     private String generateTokenId ()

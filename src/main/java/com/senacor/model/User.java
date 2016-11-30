@@ -14,6 +14,10 @@ public class User {
     private NaturalUser naturalUser;
     private String [] roles;
 
+    public User() {
+
+    }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
