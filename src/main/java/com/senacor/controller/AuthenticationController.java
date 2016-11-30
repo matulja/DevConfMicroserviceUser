@@ -5,10 +5,7 @@ import com.senacor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Marynasuprun on 07.11.2016.
@@ -21,10 +18,12 @@ public class AuthenticationController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/auth", method = RequestMethod.POST,  produces = "application/json", consumes = "application/json")
-    public ResponseEntity <User> authenticateUser(@RequestBody User user) {
-
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    public ResponseEntity <User> authenticateUser(@RequestParam(value = "username", required = false) String username,
+                                                  @RequestParam(value = "password", required=false) String password) {
         System.out.println("in Login");
+
+        User user = new User(username, password);
         User loginUser = userService.authenticateUser(user);
 
         if(loginUser != null){
@@ -33,12 +32,5 @@ public class AuthenticationController {
             return new ResponseEntity<>(loginUser, HttpStatus.UNAUTHORIZED);
         }
 
-
-       /* if(user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(user, HttpStatus.UNAUTHORIZED);
-        }*/
-      //  return new ResponseEntity<User>(userService.authenticateUser(user), HttpStatus.OK);
     }
 }
