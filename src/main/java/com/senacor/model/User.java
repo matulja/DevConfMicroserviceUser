@@ -11,37 +11,29 @@ public class User {
     private String userId;
     private String username;
     private String password;
-    private String firstname;
-    private String lastname;
-    private String email;
-    private String titel;
-    private String position;
-    private String clientServiceTeam;
-    private String roleId;
+    private NaturalUser naturalUser;
+    private String [] roles;
 
     public User() {
 
     }
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    /*public User(String id, String loginName, String password, String vorname, String nachname,
-                String email, String titel, String position, String clientServiceTeam, String roleId) {
-        this.id = id;
-        this.loginName = loginName;
-        this.password = password;
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.email = email;
-        this.titel = titel;
-        this.position = position;
-        this.clientServiceTeam = clientServiceTeam;
-        this.roleId=roleId;
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
+    public String[] getRoles() {
+        return roles;
+    }
 
-    }*/
+    public void setRoles(String[] roles) {
+        this.roles = roles;
+    }
+
 
     public String getUsername() {
         return username;
@@ -49,62 +41,6 @@ public class User {
 
     public void setLoginName(String username) {
         this.username = username;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTitel() {
-        return titel;
-    }
-
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getClientServiceTeam() {
-        return clientServiceTeam;
-    }
-
-    public void setClientServiceTeam(String clientServiceTeam) {
-        this.clientServiceTeam = clientServiceTeam;
-    }
-
-    public String getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
     }
 
     public String getUserId() {
@@ -118,6 +54,15 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public NaturalUser getNaturalUser() {
+        return naturalUser;
+    }
+
+    public void setNaturalUser(NaturalUser naturalUser) {
+        this.naturalUser = naturalUser;
+    }
+
 
 }
 
