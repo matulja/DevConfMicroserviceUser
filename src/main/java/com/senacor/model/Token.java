@@ -1,5 +1,7 @@
 package com.senacor.model;
 
+import org.springframework.data.annotation.Id;
+
 import java.security.SecureRandom;
 
 /**
@@ -8,6 +10,7 @@ import java.security.SecureRandom;
 public class Token {
 
     // TODO UUID
+    @Id
     private String tokenId;
 
     private String userId;
