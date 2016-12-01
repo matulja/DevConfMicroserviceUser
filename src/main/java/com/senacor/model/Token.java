@@ -15,7 +15,7 @@ public class Token {
 
     private String tokenId;
     private String userId;
-    private String [] roles;
+    private String role;
 
 
     public Token(User user)
@@ -23,8 +23,8 @@ public class Token {
     {
 
         this.userId=user.getUserId();
-        this.roles=user.getRoles();
-        tokenId= generateTokenId();
+        this.role=user.getRole();
+        this.tokenId= generateTokenId();
 
 
     }
@@ -44,12 +44,12 @@ public class Token {
         this.userId = userId;
     }
 
-    public String[] getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(String[] roles) {
-        this.roles = roles;
+    public void setRoles(String role) {
+        this.role = role;
     }
 
     private String generateTokenId ()

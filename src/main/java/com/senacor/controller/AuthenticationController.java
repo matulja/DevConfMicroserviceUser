@@ -43,7 +43,7 @@ public class AuthenticationController {
             Token token = tokenService.createToken(savedUser);
             System.out.println(token.getTokenId());
             System.out.println(token.getUserId());
-            System.out.println(token.getRoles());
+            System.out.println(token.getRole());
             return new ResponseEntity<>(token, HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

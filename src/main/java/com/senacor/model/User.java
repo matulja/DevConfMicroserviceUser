@@ -2,6 +2,7 @@ package com.senacor.model;
 
 import org.springframework.data.annotation.Id;
 
+
 /**
  * Created by Marynasuprun on 07.11.2016.
  */
@@ -12,7 +13,7 @@ public class User {
     private String username;
     private String password;
     private NaturalUser naturalUser;
-    private String [] roles;
+    private String role;
 
     public User() {
 
@@ -21,6 +22,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.role =Role.USER;
     }
 
 
@@ -33,12 +35,12 @@ public class User {
         this.username = username;
     }
 
-    public String[] getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(String[] roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 
 
@@ -68,6 +70,10 @@ public class User {
 
     public void setNaturalUser(NaturalUser naturalUser) {
         this.naturalUser = naturalUser;
+    }
+
+    public void setAdminRole() {
+        this.role = Role.ADMIN;
     }
 
 
