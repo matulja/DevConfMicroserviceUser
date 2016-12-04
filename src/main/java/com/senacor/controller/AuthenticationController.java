@@ -27,24 +27,15 @@ public class AuthenticationController {
     TokenService tokenService;
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public ResponseEntity <Token> authenticateUser(@RequestParam(value = "username", required = false) String username,
+    public ResponseEntity <String> authenticateUser(@RequestParam(value = "username", required = false) String username,
                                                   @RequestParam(value = "password", required=false) String password) {
-        System.out.println("in Login");
 
-        User user = new User();
-
-        user.setUsername(username);
-        user.setPassword(password);
-
+        User user = new User(username, password);
         User savedUser = userService.authenticateUser(user);
-
 
         if(savedUser != null){
             Token token = tokenService.createToken(savedUser);
-            System.out.println(token.getTokenId());
-            System.out.println(token.getUserId());
-            System.out.println(token.getRole());
-            return new ResponseEntity<>(token, HttpStatus.OK);
+            return new ResponseEntity<>(token.getTokenId(), HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
