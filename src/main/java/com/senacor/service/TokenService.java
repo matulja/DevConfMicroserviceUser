@@ -15,19 +15,10 @@ public class TokenService {
     @Autowired
     TokenRepository tokenRepository;
 
-    public Token createToken (User user)
-
-
-    {
-        if (user!=null)
-        {
-             Token token = new Token (user);
-            tokenRepository.save(token);
-
-            return token;
-        }
-
-        return null;
+    public Token createToken (User user){
+        Token token = new Token (user);
+        tokenRepository.save(token);
+        return token;
     }
 
 
