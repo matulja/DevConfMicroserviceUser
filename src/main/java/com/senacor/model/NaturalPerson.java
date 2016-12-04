@@ -1,15 +1,31 @@
 package com.senacor.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
 /**
  * Created by Marynasuprun on 30.11.2016.
  */
-public class NaturalUser {
+@Document(collection = "naturalUser")
+public class NaturalPerson {
 
+    @Id
+    private String naturalPersonId;
     private String firstname;
     private String lastname;
     private String email;
     private String titel;
     private String position;
+
+    public String getNaturalPersonId() {
+        return naturalPersonId;
+    }
+
+    public void setNaturalPersonId(String naturalPersonId) {
+        this.naturalPersonId = naturalPersonId;
+    }
+
 
     public String getFirstname() {
         return firstname;

@@ -1,18 +1,20 @@
 package com.senacor.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 /**
  * Created by Marynasuprun on 07.11.2016.
  */
+@Document(collection = "user")
 public class User {
 
     @Id
     private String userId;
     private String username;
     private String password;
-    private NaturalUser naturalUser;
+    private String naturalPersonID;
     private String role;
 
     public User() {
@@ -25,11 +27,6 @@ public class User {
         this.role =Role.USER;
     }
 
-
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -48,9 +45,6 @@ public class User {
         return username;
     }
 
-    public void setLoginName(String username) {
-        this.username = username;
-    }
 
     public String getUserId() {
         return userId;
@@ -64,12 +58,12 @@ public class User {
         this.password = password;
     }
 
-    public NaturalUser getNaturalUser() {
-        return naturalUser;
+    public String getNaturalPersonID() {
+        return naturalPersonID;
     }
 
-    public void setNaturalUser(NaturalUser naturalUser) {
-        this.naturalUser = naturalUser;
+    public void setNaturalPersonID(String naturalPersonID) {
+        this.naturalPersonID = naturalPersonID;
     }
 
     public void setAdminRole() {
