@@ -21,6 +21,15 @@ public class TokenService {
         return token;
     }
 
+    public String checkToken(String tokenId) {
+        Token token = tokenRepository.findByTokenId(tokenId);
+        if (token != null) {
+            return token.getTokenId();
+        }else{
+            return "";
+        }
+    }
+
 
 
 }

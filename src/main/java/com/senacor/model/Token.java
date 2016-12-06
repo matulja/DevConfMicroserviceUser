@@ -17,17 +17,17 @@ public class Token {
     private String userId;
     private String role;
 
+    public Token() {
 
-    public Token(User user)
+    }
 
-    {
-
+    public Token(User user) {
         this.userId=user.getUserId();
         this.role=user.getRole();
         this.tokenId= generateTokenId();
-
-
     }
+
+
     public String getTokenId() {
         return tokenId;
     }

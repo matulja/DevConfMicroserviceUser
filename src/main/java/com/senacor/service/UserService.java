@@ -25,7 +25,6 @@ public class UserService {
         System.out.println(savedUser.getUsername());
         if (savedUser != null && savedUser.getPassword().equals(user.getPassword())) {
             user = savedUser;
-
         }
         else{
             user = null;
