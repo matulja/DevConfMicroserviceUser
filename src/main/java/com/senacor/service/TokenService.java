@@ -31,5 +31,8 @@ public class TokenService {
     }
 
 
-
+    public String getUserId(String tokenId) {
+        System.out.println(tokenRepository.findByTokenId(tokenId).getUserId());
+        return  tokenRepository.findByTokenId(tokenId).getUserId();
+    }
 }

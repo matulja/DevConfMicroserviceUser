@@ -20,23 +20,23 @@ import javax.websocket.server.PathParam;
 @RequestMapping("/user")
 public class AuthenticationController {
 
-  @Autowired
-  UserService userService;
+    @Autowired
+    UserService userService;
 
     @Autowired
     TokenService tokenService;
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public ResponseEntity <Token> authenticateUser(@RequestParam(value = "username", required = false) String username,
-                                                  @RequestParam(value = "password", required=false) String password) {
+    public ResponseEntity<Token> authenticateUser(@RequestParam(value = "username", required = false) String username,
+                                                  @RequestParam(value = "password", required = false) String password) {
 
         User user = new User(username, password);
         User savedUser = userService.authenticateUser(user);
 
-        if(savedUser != null){
+        if (savedUser != null) {
             Token token = tokenService.createToken(savedUser);
             return new ResponseEntity<>(token, HttpStatus.OK);
-        } else{
+        } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
@@ -44,9 +44,15 @@ public class AuthenticationController {
 
 
     @RequestMapping(value = "/validateToken", method = RequestMethod.GET)
-    public ResponseEntity<String> validateToken(@RequestParam(value = "tokenId", required = false) String tokenId){
+    public ResponseEntity<String> validateToken(@RequestParam(value = "tokenId", required = false) String tokenId) {
         String savedTokenId = tokenService.checkToken(tokenId);
         return new ResponseEntity<>(savedTokenId, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/getUserId/{tokenId}", method = RequestMethod.GET)
+    public ResponseEntity<String> getUserId(@PathVariable("tokenId") String tokenId) {
+        return new ResponseEntity<String>(tokenService.getUserId(tokenId), HttpStatus.OK);
+    }
+
 }
+
