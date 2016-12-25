@@ -1,6 +1,7 @@
 package com.senacor;
 
 import com.senacor.model.User;
+import com.senacor.repository.TokenRepository;
 import com.senacor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +14,9 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 	@Autowired
 	UserRepository userRepository;
 
+    @Autowired
+    TokenRepository tokenRepository;
+
 
 	public static void main(String[] args) {
 
@@ -23,5 +27,7 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		//TODO delete commandlinerunner
+
+        tokenRepository.deleteAll();
 	}
 }

@@ -27,12 +27,8 @@ public class AuthenticationController {
     TokenService tokenService;
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public ResponseEntity<Token> authenticateUser(@RequestParam(value = "username", required = false) String username,
-                                                  @RequestParam(value = "password", required = false) String password) {
-
-        User user = new User(username, password);
+    public ResponseEntity<Token> authenticateUser(@RequestBody User user) {
         User savedUser = userService.authenticateUser(user);
-
         if (savedUser != null) {
             Token token = tokenService.createToken(savedUser);
             return new ResponseEntity<>(token, HttpStatus.OK);
