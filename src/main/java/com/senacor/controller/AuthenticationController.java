@@ -6,6 +6,7 @@ import com.senacor.service.TokenService;
 import com.senacor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,11 +39,22 @@ public class AuthenticationController {
 
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void logout(@RequestBody Token token) {
+        tokenService.deleteToken(token);
+    }
+
 
     @RequestMapping(value = "/validateToken", method = RequestMethod.GET)
     public ResponseEntity<String> validateToken(@RequestParam(value = "tokenId", required = false) String tokenId) {
+
         String savedTokenId = tokenService.checkToken(tokenId);
-        return new ResponseEntity<>(savedTokenId, HttpStatus.OK);
+        if (savedTokenId.equals("")) {
+            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+        } else {
+            return new ResponseEntity<>(savedTokenId, HttpStatus.OK);
+        }
     }
 
     @RequestMapping(value = "/getUserId/{tokenId}", method = RequestMethod.GET)

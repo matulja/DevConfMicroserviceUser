@@ -19,10 +19,7 @@ public class UserService {
     TokenRepository tokenRepository;
 
     public User authenticateUser(User user) {
-
-
         User savedUser = userRepository.findByUsername(user.getUsername());
-        System.out.println(savedUser.getUsername());
         if (savedUser != null && savedUser.getPassword().equals(user.getPassword())) {
             user = savedUser;
         }

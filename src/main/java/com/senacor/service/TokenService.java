@@ -6,6 +6,8 @@ import com.senacor.repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 /**
  * Created by Marynasuprun on 30.11.2016.
  */
@@ -15,24 +17,29 @@ public class TokenService {
     @Autowired
     TokenRepository tokenRepository;
 
-    public Token createToken (User user){
-        Token token = new Token (user);
+    public Token createToken(User user) {
+        Token token = new Token(user);
         tokenRepository.save(token);
+        System.out.println(token.getTokenId());
         return token;
     }
 
     public String checkToken(String tokenId) {
         Token token = tokenRepository.findByTokenId(tokenId);
-        if (token != null) {
-            return token.getTokenId();
-        }else{
+        if (token == null || token.getExpiryDate().isBefore(LocalDate.now())) {
             return "";
+        } else {
+            return token.getTokenId();
         }
     }
 
 
     public String getUserId(String tokenId) {
         System.out.println(tokenRepository.findByTokenId(tokenId).getUserId());
-        return  tokenRepository.findByTokenId(tokenId).getUserId();
+        return tokenRepository.findByTokenId(tokenId).getUserId();
+    }
+
+    public void deleteToken(Token token) {
+        tokenRepository.delete(token);
     }
 }

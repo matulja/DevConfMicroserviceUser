@@ -1,5 +1,6 @@
 package com.senacor.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,11 +22,9 @@ public class User {
 
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
-
 
     public void setUsername(String username) {
         this.username = username;
