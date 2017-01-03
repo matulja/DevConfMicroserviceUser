@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Created by Marynasuprun on 30.11.2016.
@@ -26,7 +27,10 @@ public class TokenService {
 
     public String checkToken(String tokenId) {
         Token token = tokenRepository.findByTokenId(tokenId);
-        if (token == null || token.getExpiryDate().isBefore(LocalDate.now())) {
+        if (token == null) {
+            return "";
+        } else if (token.getExpiryTime().isBefore(LocalTime.now())&&token.getExpiryDate().isBefore(LocalDate.now())) {
+            tokenRepository.delete(token);
             return "";
         } else {
             return token.getTokenId();

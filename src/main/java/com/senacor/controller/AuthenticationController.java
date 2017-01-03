@@ -50,16 +50,13 @@ public class AuthenticationController {
     public ResponseEntity<String> validateToken(@RequestParam(value = "tokenId", required = false) String tokenId) {
 
         String savedTokenId = tokenService.checkToken(tokenId);
-        if (savedTokenId.equals("")) {
-            return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-        } else {
-            return new ResponseEntity<>(savedTokenId, HttpStatus.OK);
-        }
+        return new ResponseEntity<>(savedTokenId, HttpStatus.OK);
+
     }
 
     @RequestMapping(value = "/getUserId/{tokenId}", method = RequestMethod.GET)
     public ResponseEntity<String> getUserId(@PathVariable("tokenId") String tokenId) {
-        return new ResponseEntity<String>(tokenService.getUserId(tokenId), HttpStatus.OK);
+        return new ResponseEntity<>(tokenService.getUserId(tokenId), HttpStatus.OK);
     }
 
 }

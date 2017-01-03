@@ -6,6 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 /**
  * Created by Marynasuprun on 30.11.2016.
@@ -22,6 +27,7 @@ public class Token {
     private String role;
 
     private LocalDate expiryDate;
+    private LocalTime expiryTime;
 
     public Token() {
 
@@ -31,7 +37,8 @@ public class Token {
         this.userId=user.getUserId();
         this.role=user.getRole();
         this.tokenId= generateTokenId();
-        this.expiryDate = LocalDate.now().plusDays(7);
+        this.expiryDate = LocalDate.now().plusDays(1);
+        this.expiryTime = LocalTime.now();
     }
 
 
@@ -77,6 +84,14 @@ public class Token {
 
     public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    public LocalTime getExpiryTime() {
+        return expiryTime;
+    }
+
+    public void setExpiryTime(LocalTime expiryTime) {
+        this.expiryTime = expiryTime;
     }
 }
 
