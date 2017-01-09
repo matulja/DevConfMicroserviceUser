@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Created by Marynasuprun on 30.11.2016.
  */
-@Document(collection = "naturalUser")
+@Document(collection = "naturalPerson")
 public class NaturalPerson {
 
     @Id
@@ -17,6 +17,7 @@ public class NaturalPerson {
     private String email;
     private String titel;
     private String position;
+    private String userId;
 
     public String getNaturalPersonId() {
         return naturalPersonId;
@@ -77,4 +78,12 @@ public class NaturalPerson {
     }
 
     private String clientServiceTeam;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

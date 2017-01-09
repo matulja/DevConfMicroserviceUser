@@ -1,7 +1,9 @@
 package com.senacor;
 
+import com.senacor.model.NaturalPerson;
 import com.senacor.model.Token;
 import com.senacor.model.User;
+import com.senacor.repository.NaturalPersonRepository;
 import com.senacor.repository.TokenRepository;
 import com.senacor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
     @Autowired
     TokenRepository tokenRepository;
 
+	@Autowired
+	NaturalPersonRepository naturalPersonRepository;
+
 
 	public static void main(String[] args) {
 
@@ -30,8 +35,18 @@ public class DevConfMicroserviceUserApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		//TODO delete commandlinerunner
+/*
 
         tokenRepository.deleteAll();
+		userRepository.deleteAll();
+		naturalPersonRepository.deleteAll();
+*/
+		for (User user : userRepository.findAll()) {
+			NaturalPerson naturalPerson = naturalPersonRepository.findByUserId(user.getUserId());
+			System.out.println(naturalPerson.getFirstname());
+			System.out.println(naturalPerson.getLastname());
+			System.out.println(naturalPerson.getEmail());
+		}
 
 	}
 }
